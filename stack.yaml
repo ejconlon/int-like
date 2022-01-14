@@ -5,6 +5,3 @@ ghc-options:
 
 packages:
 - .
-
-extra-deps:
-- algebraic-graphs-0.6
