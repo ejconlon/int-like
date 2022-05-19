@@ -5,8 +5,8 @@ license:             BSD3
 author:              "Eric Conlon"
 maintainer:          "ejconlon@gmail.com"
 copyright:           "(c) 2022 Eric Conlon"
-# category:            Undefined
-# synopsis:            Undefined
+category:            "Data Structures"
+synopsis:            "Newtype wrappers over IntSet and IntMap"
 
 extra-source-files:
 - README.md

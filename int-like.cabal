@@ -6,7 +6,9 @@ cabal-version: 1.12
 
 name:           int-like
 version:        0.1.0
+synopsis:       Newtype wrappers over IntSet and IntMap
 description:    Please see the README on GitHub at <https://github.com/ejconlon/int-like#readme>
+category:       Data Structures
 homepage:       https://github.com/ejconlon/int-like#readme
 bug-reports:    https://github.com/ejconlon/int-like/issues
 author:         Eric Conlon
