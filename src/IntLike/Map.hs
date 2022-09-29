@@ -8,6 +8,7 @@ module IntLike.Map
   , member
   , toList
   , keys
+  , keysSet
   , elems
   , lookup
   , partialLookup
@@ -66,6 +67,10 @@ toList = coerce . IntMap.toList . unIntLikeMap
 keys :: Coercible x Int => IntLikeMap x a -> [x]
 keys = coerce . IntMap.keys . unIntLikeMap
 {-# INLINE keys #-}
+
+keysSet :: IntLikeMap x a -> IntLikeSet x
+keysSet = IntLikeSet . IntMap.keysSet . unIntLikeMap
+{-# INLINE keysSet #-}
 
 elems :: IntLikeMap x a -> [a]
 elems = IntMap.elems . unIntLikeMap
