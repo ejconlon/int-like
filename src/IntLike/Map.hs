@@ -23,6 +23,7 @@ module IntLike.Map
   , restrictKeys
   , map
   , insertState
+  , mapWithKey
   ) where
 
 import Control.DeepSeq (NFData)
@@ -127,3 +128,7 @@ map f = IntLikeMap . IntMap.map f . unIntLikeMap
 insertState :: Coercible x Int => (Maybe a -> b) -> x -> a -> IntLikeMap x a -> (b, IntLikeMap x a)
 insertState f x a = coerce . IntMap.alterF (\m -> (f m, Just a)) (coerce x) . unIntLikeMap
 {-# INLINE insertState #-}
+
+mapWithKey :: Coercible x Int => (x -> a -> b) -> IntLikeMap x a -> IntLikeMap x b
+mapWithKey f = IntLikeMap . IntMap.mapWithKey (coerce f) . unIntLikeMap
+{-# INLINE mapWithKey #-}
