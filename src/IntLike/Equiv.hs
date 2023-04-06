@@ -9,7 +9,8 @@ module IntLike.Equiv
   , partialInsert
   , member
   , lookupClass
-  ) where
+  )
+where
 
 import Control.DeepSeq (NFData)
 import Data.Coerce (Coercible)
@@ -23,8 +24,9 @@ import qualified IntLike.MultiMap as ILMM
 data IntLikeEquiv k v = IntLikeEquiv
   { fwdView :: !(IntLikeMultiMap k v)
   , bwdView :: !(IntLikeMap v k)
-  } deriving stock (Eq, Show, Generic)
-    deriving anyclass (NFData)
+  }
+  deriving stock (Eq, Show, Generic)
+  deriving anyclass (NFData)
 
 empty :: IntLikeEquiv k v
 empty = IntLikeEquiv ILMM.empty ILM.empty

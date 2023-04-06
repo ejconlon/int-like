@@ -24,7 +24,8 @@ module IntLike.Map
   , map
   , insertState
   , mapWithKey
-  ) where
+  )
+where
 
 import Control.DeepSeq (NFData)
 import Data.Coerce (Coercible, coerce)
@@ -33,7 +34,7 @@ import qualified Data.IntMap.Strict as IntMap
 import IntLike.Set (IntLikeSet (..))
 import Prelude hiding (filter, lookup, map, null)
 
-newtype IntLikeMap x a = IntLikeMap { unIntLikeMap :: IntMap a }
+newtype IntLikeMap x a = IntLikeMap {unIntLikeMap :: IntMap a}
   deriving stock (Show, Traversable)
   deriving newtype (Eq, Functor, Foldable, NFData, Semigroup, Monoid)
 

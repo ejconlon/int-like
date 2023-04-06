@@ -7,7 +7,8 @@ module IntLike.Graph
   , reachable
   , Component (..)
   , undirectedComponents
-  ) where
+  )
+where
 
 import Algebra.Graph.AdjacencyIntMap (AdjacencyIntMap)
 import qualified Algebra.Graph.AdjacencyIntMap as AdjacencyIntMap
@@ -25,7 +26,7 @@ import IntLike.MultiMap (IntLikeMultiMap)
 import IntLike.Set (IntLikeSet (..))
 import qualified IntLike.Set as ILS
 
-newtype IntLikeGraph x = IntLikeGraph { unIntLikeGraph :: AdjacencyIntMap }
+newtype IntLikeGraph x = IntLikeGraph {unIntLikeGraph :: AdjacencyIntMap}
   deriving newtype (Eq, Show, NFData)
 
 instance Coercible x Int => Graph (IntLikeGraph x) where
@@ -55,12 +56,13 @@ reachable :: Coercible x Int => x -> IntLikeGraph x -> [x]
 reachable x = coerce . AIMA.reachable (coerce x) . unIntLikeGraph
 {-# INLINE reachable #-}
 
-newtype Component = Component { unComponent :: Int }
+newtype Component = Component {unComponent :: Int}
   deriving stock (Show)
   deriving newtype (Eq, Ord, Enum, Hashable, NFData)
 
 undirectedComponents :: Coercible x Int => [(x, x)] -> IntLikeEquiv Component x
-undirectedComponents es = go 0 startVs ILE.empty where
+undirectedComponents es = go 0 startVs ILE.empty
+ where
   g = fromUndirectedEdges es
   startVs = ILS.fromList (vertexList g)
   go i vs eqv =
@@ -71,4 +73,4 @@ undirectedComponents es = go 0 startVs ILE.empty where
             -- partial: ok by construction of graph and defn of reachable
             eqv' = foldl' (flip (ILE.partialInsert (Component i))) eqv rs
             vs'' = foldl' (flip ILS.delete) vs' rs
-        in go (i + 1) vs'' eqv'
+        in  go (i + 1) vs'' eqv'

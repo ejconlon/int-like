@@ -22,7 +22,8 @@ module IntLike.Set
   , insertState
   , orderedPairs
   , unorderedPairs
-  ) where
+  )
+where
 
 import Control.DeepSeq (NFData)
 import Data.Coerce (Coercible, coerce)
@@ -31,7 +32,7 @@ import Data.IntSet (IntSet)
 import qualified Data.IntSet as IntSet
 import Prelude hiding (filter, map, null)
 
-newtype IntLikeSet x = IntLikeSet { unIntLikeSet :: IntSet }
+newtype IntLikeSet x = IntLikeSet {unIntLikeSet :: IntSet}
   deriving stock (Show)
   deriving newtype (Eq, NFData, Semigroup, Monoid)
 
@@ -120,12 +121,13 @@ orderedPairs :: Coercible x Int => IntLikeSet x -> [(x, x)]
 orderedPairs s = let vs = toList s in [(x, y) | x <- vs, y <- vs]
 
 unorderedPairs :: Coercible x Int => IntLikeSet x -> [(x, x)]
-unorderedPairs = go1 . toList where
+unorderedPairs = go1 . toList
+ where
   go1 vs =
     case vs of
       [] -> []
-      x:xs -> go2 x xs xs
+      x : xs -> go2 x xs xs
   go2 x vl vs =
     case vl of
       [] -> go1 vs
-      y:vl' -> (x, y):go2 x vl' vs
+      y : vl' -> (x, y) : go2 x vl' vs

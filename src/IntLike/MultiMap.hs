@@ -8,7 +8,8 @@ module IntLike.MultiMap
   , invertDisjoint
   , unsafeInvertDisjoint
   , fromInvertedMap
-  ) where
+  )
+where
 
 import Control.Monad (foldM)
 import Data.Coerce (Coercible)
@@ -41,7 +42,8 @@ member k v = maybe False (ILS.member v) . ILM.lookup k
 {-# INLINE member #-}
 
 invertDisjoint :: (Coercible k Int, Coercible v Int) => IntLikeMultiMap k v -> Either (k, k, v) (IntLikeMap v k)
-invertDisjoint = foldM go1 ILM.empty . ILM.toList where
+invertDisjoint = foldM go1 ILM.empty . ILM.toList
+ where
   go1 m (k, vs) = foldM (go2 k) m (ILS.toList vs)
   go2 k m v =
     case ILM.lookup v m of
@@ -49,7 +51,8 @@ invertDisjoint = foldM go1 ILM.empty . ILM.toList where
       Just k' -> Left (k, k', v)
 
 unsafeInvertDisjoint :: (Coercible k Int, Coercible v Int) => IntLikeMultiMap k v -> IntLikeMap v k
-unsafeInvertDisjoint = foldl' go1 ILM.empty . ILM.toList where
+unsafeInvertDisjoint = foldl' go1 ILM.empty . ILM.toList
+ where
   go1 m (k, vs) = foldl' (go2 k) m (ILS.toList vs)
   go2 k m v = ILM.insert v k m
 
