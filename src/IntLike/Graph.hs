@@ -53,7 +53,7 @@ fromUndirectedEdges es = overlay (fromDirectedEdges es) (fromDirectedEdges (fmap
 {-# INLINE fromUndirectedEdges #-}
 
 reachable :: Coercible x Int => x -> IntLikeGraph x -> [x]
-reachable x = coerce . AIMA.reachable (coerce x) . unIntLikeGraph
+reachable x = coerce . flip AIMA.reachable (coerce x) . unIntLikeGraph
 {-# INLINE reachable #-}
 
 newtype Component = Component {unComponent :: Int}
