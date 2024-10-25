@@ -25,7 +25,7 @@ data IntLikeEquiv k v = IntLikeEquiv
   { fwdView :: !(IntLikeMultiMap k v)
   , bwdView :: !(IntLikeMap v k)
   }
-  deriving stock (Eq, Show, Generic)
+  deriving stock (Eq, Ord, Show, Generic)
   deriving anyclass (NFData)
 
 empty :: IntLikeEquiv k v

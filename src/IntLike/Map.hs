@@ -36,7 +36,7 @@ import Prelude hiding (filter, lookup, map, null)
 
 newtype IntLikeMap x a = IntLikeMap {unIntLikeMap :: IntMap a}
   deriving stock (Show, Traversable)
-  deriving newtype (Eq, Functor, Foldable, NFData, Semigroup, Monoid)
+  deriving newtype (Eq, Ord, Functor, Foldable, NFData, Semigroup, Monoid)
 
 empty :: IntLikeMap x a
 empty = IntLikeMap IntMap.empty

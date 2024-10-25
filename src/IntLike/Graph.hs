@@ -27,7 +27,7 @@ import IntLike.Set (IntLikeSet (..))
 import qualified IntLike.Set as ILS
 
 newtype IntLikeGraph x = IntLikeGraph {unIntLikeGraph :: AdjacencyIntMap}
-  deriving newtype (Eq, Show, NFData)
+  deriving newtype (Eq, Ord, Show, NFData)
 
 instance Coercible x Int => Graph (IntLikeGraph x) where
   type Vertex (IntLikeGraph x) = x

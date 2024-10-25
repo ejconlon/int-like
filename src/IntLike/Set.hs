@@ -34,7 +34,7 @@ import Prelude hiding (filter, map, null)
 
 newtype IntLikeSet x = IntLikeSet {unIntLikeSet :: IntSet}
   deriving stock (Show)
-  deriving newtype (Eq, NFData, Semigroup, Monoid)
+  deriving newtype (Eq, Ord, NFData, Semigroup, Monoid)
 
 empty :: IntLikeSet x
 empty = IntLikeSet IntSet.empty
