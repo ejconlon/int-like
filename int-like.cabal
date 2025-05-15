@@ -53,6 +53,7 @@ library
       LambdaCase
       KindSignatures
       MultiParamTypeClasses
+      QuantifiedConstraints
       Rank2Types
       RoleAnnotations
       ScopedTypeVariables
