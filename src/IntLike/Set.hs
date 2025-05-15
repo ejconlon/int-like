@@ -32,6 +32,8 @@ import Data.IntSet (IntSet)
 import qualified Data.IntSet as IntSet
 import Prelude hiding (filter, map, null)
 
+type role IntLikeSet nominal
+
 newtype IntLikeSet x = IntLikeSet {unIntLikeSet :: IntSet}
   deriving stock (Show)
   deriving newtype (Eq, Ord, NFData, Semigroup, Monoid)

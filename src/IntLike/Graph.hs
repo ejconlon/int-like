@@ -26,6 +26,8 @@ import IntLike.MultiMap (IntLikeMultiMap)
 import IntLike.Set (IntLikeSet (..))
 import qualified IntLike.Set as ILS
 
+type role IntLikeGraph nominal
+
 newtype IntLikeGraph x = IntLikeGraph {unIntLikeGraph :: AdjacencyIntMap}
   deriving newtype (Eq, Ord, Show, NFData)
 

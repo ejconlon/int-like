@@ -34,6 +34,8 @@ import qualified Data.IntMap.Strict as IntMap
 import IntLike.Set (IntLikeSet (..))
 import Prelude hiding (filter, lookup, map, null)
 
+type role IntLikeMap nominal representational
+
 newtype IntLikeMap x a = IntLikeMap {unIntLikeMap :: IntMap a}
   deriving stock (Show, Traversable)
   deriving newtype (Eq, Ord, Functor, Foldable, NFData, Semigroup, Monoid)

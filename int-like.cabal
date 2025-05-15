@@ -54,6 +54,7 @@ library
       KindSignatures
       MultiParamTypeClasses
       Rank2Types
+      RoleAnnotations
       ScopedTypeVariables
       StandaloneDeriving
       TemplateHaskell
