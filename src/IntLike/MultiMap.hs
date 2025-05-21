@@ -29,7 +29,7 @@ size :: IntLikeMultiMap k v -> Int
 size = ILM.size
 {-# INLINE size #-}
 
-toList :: Coercible k Int => IntLikeMultiMap k v -> [(k, IntLikeSet v)]
+toList :: (Coercible k Int) => IntLikeMultiMap k v -> [(k, IntLikeSet v)]
 toList = ILM.toList
 {-# INLINE toList #-}
 

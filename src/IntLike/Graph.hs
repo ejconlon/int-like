@@ -31,7 +31,7 @@ type role IntLikeGraph nominal
 newtype IntLikeGraph x = IntLikeGraph {unIntLikeGraph :: AdjacencyIntMap}
   deriving newtype (Eq, Ord, Show, NFData)
 
-instance Coercible x Int => Graph (IntLikeGraph x) where
+instance (Coercible x Int) => Graph (IntLikeGraph x) where
   type Vertex (IntLikeGraph x) = x
   empty = IntLikeGraph AdjacencyIntMap.empty
   vertex v = IntLikeGraph (AdjacencyIntMap.vertex (coerce v))
@@ -42,19 +42,19 @@ adjacencyIntMultiMap :: IntLikeGraph x -> IntLikeMultiMap x x
 adjacencyIntMultiMap = coerce . AdjacencyIntMap.adjacencyIntMap . unIntLikeGraph
 {-# INLINE adjacencyIntMultiMap #-}
 
-vertexList :: Coercible x Int => IntLikeGraph x -> [x]
+vertexList :: (Coercible x Int) => IntLikeGraph x -> [x]
 vertexList = coerce . AdjacencyIntMap.vertexList . unIntLikeGraph
 {-# INLINE vertexList #-}
 
-fromDirectedEdges :: Coercible x Int => [(x, x)] -> IntLikeGraph x
+fromDirectedEdges :: (Coercible x Int) => [(x, x)] -> IntLikeGraph x
 fromDirectedEdges = IntLikeGraph . AdjacencyIntMap.edges . coerce
 {-# INLINE fromDirectedEdges #-}
 
-fromUndirectedEdges :: Coercible x Int => [(x, x)] -> IntLikeGraph x
+fromUndirectedEdges :: (Coercible x Int) => [(x, x)] -> IntLikeGraph x
 fromUndirectedEdges es = overlay (fromDirectedEdges es) (fromDirectedEdges (fmap swap es))
 {-# INLINE fromUndirectedEdges #-}
 
-reachable :: Coercible x Int => x -> IntLikeGraph x -> [x]
+reachable :: (Coercible x Int) => x -> IntLikeGraph x -> [x]
 reachable x = coerce . flip AIMA.reachable (coerce x) . unIntLikeGraph
 {-# INLINE reachable #-}
 
@@ -62,7 +62,7 @@ newtype Component = Component {unComponent :: Int}
   deriving stock (Show)
   deriving newtype (Eq, Ord, Enum, Hashable, NFData)
 
-undirectedComponents :: Coercible x Int => [(x, x)] -> IntLikeEquiv Component x
+undirectedComponents :: (Coercible x Int) => [(x, x)] -> IntLikeEquiv Component x
 undirectedComponents es = go 0 startVs ILE.empty
  where
   g = fromUndirectedEdges es
