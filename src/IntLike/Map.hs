@@ -411,7 +411,7 @@ disjoint :: forall x a b. IntLikeMap x a -> IntLikeMap x b -> Bool
 disjoint = coerce (IntMap.disjoint @a @b)
 {-# INLINE disjoint #-}
 
-compose :: forall x c. IntLikeMap x c -> IntMap Int -> IntLikeMap x c
+compose :: forall x a c. (Coercible x Int) => IntLikeMap x c -> IntLikeMap a x -> IntLikeMap a c
 compose = coerce (IntMap.compose @c)
 {-# INLINE compose #-}
 
