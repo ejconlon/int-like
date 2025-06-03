@@ -113,7 +113,17 @@ import qualified Data.IntSet as IntSet
 #if MIN_VERSION_containers(0,8,0)
 import Data.List.NonEmpty (NonEmpty)
 #endif
-import Prelude hiding (filter, foldMap, foldl, foldr, map, null)
+import Prelude hiding
+  ( filter
+  , foldMap
+  , foldl
+#if MIN_VERSION_base(4,20,0) /* foldl' migration */
+  , foldl'
+#endif
+  , foldr
+  , map
+  , null
+  )
 
 type role IntLikeSet nominal
 

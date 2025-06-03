@@ -1,3 +1,5 @@
+{-# LANGUAGE CPP #-}
+
 module IntLike.Graph
   ( IntLikeGraph (..)
   , adjacencyIntMultiMap
@@ -16,7 +18,9 @@ import qualified Algebra.Graph.AdjacencyIntMap.Algorithm as AIMA
 import Algebra.Graph.Class (Graph (..))
 import Control.DeepSeq (NFData)
 import Data.Coerce (Coercible, coerce)
+#if !MIN_VERSION_base(4,20,0) /* foldl' migration */
 import Data.Foldable (foldl')
+#endif
 import Data.Hashable (Hashable)
 import Data.Tuple (swap)
 import IntLike.Equiv (IntLikeEquiv)

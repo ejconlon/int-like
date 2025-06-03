@@ -1,3 +1,5 @@
+{-# LANGUAGE CPP #-}
+
 module IntLike.MultiMap
   ( IntLikeMultiMap
   , empty
@@ -13,7 +15,9 @@ where
 
 import Control.Monad (foldM)
 import Data.Coerce (Coercible)
+#if !MIN_VERSION_base(4,20,0) /* foldl' migration */
 import Data.Foldable (foldl')
+#endif
 import IntLike.Map (IntLikeMap)
 import qualified IntLike.Map as ILM
 import IntLike.Set (IntLikeSet)
