@@ -184,7 +184,17 @@ import Data.Coerce (Coercible, coerce)
 import Data.IntMap.Strict (IntMap)
 import qualified Data.IntMap.Strict as IntMap
 import IntLike.Set (IntLikeSet (..))
-import Prelude hiding (filter, foldl, foldr, lookup, map, null)
+import Prelude hiding
+  ( filter
+  , foldl
+#if MIN_VERSION_base(4,20,0) /* foldl' migration */
+  , foldl'
+#endif
+  , foldr
+  , lookup
+  , map
+  , null
+  )
 
 type role IntLikeMap nominal representational
 
