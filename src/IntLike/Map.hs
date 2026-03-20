@@ -180,6 +180,7 @@ module IntLike.Map
 where
 
 import Control.DeepSeq (NFData)
+import Data.Hashable (Hashable)
 import Data.Coerce (Coercible, coerce)
 import Data.IntMap.Strict (IntMap)
 import qualified Data.IntMap.Strict as IntMap
@@ -200,7 +201,7 @@ type role IntLikeMap nominal representational
 
 newtype IntLikeMap x a = IntLikeMap {unIntLikeMap :: IntMap a}
   deriving stock (Show, Traversable)
-  deriving newtype (Eq, Ord, Functor, Foldable, NFData, Semigroup, Monoid)
+  deriving newtype (Eq, Ord, Functor, Foldable, Hashable, NFData, Semigroup, Monoid)
 
 empty :: forall x a. IntLikeMap x a
 empty = coerce (IntMap.empty @a)

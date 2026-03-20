@@ -107,6 +107,7 @@ module IntLike.Set
 where
 
 import Control.DeepSeq (NFData)
+import Data.Hashable (Hashable)
 import Data.Coerce (Coercible, coerce)
 import Data.IntSet (IntSet)
 import qualified Data.IntSet as IntSet
@@ -129,7 +130,7 @@ type role IntLikeSet nominal
 
 newtype IntLikeSet x = IntLikeSet {unIntLikeSet :: IntSet}
   deriving stock (Show)
-  deriving newtype (Eq, Ord, NFData, Semigroup, Monoid)
+  deriving newtype (Eq, Ord, Hashable, NFData, Semigroup, Monoid)
 
 empty :: IntLikeSet x
 empty = coerce IntSet.empty
